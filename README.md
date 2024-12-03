@@ -17,7 +17,7 @@ Este repositório tem como objetivo dar continuidade ao desenvolvimento de um si
 
 ## Equipe de Desenvolvedores 👨‍💻 
 
-- [Gabriela Rodrigues de Souza](https://www.github.com/Agbl09)
+- [Gabriela Rodrigues](https://www.github.com/Agbl09)
 
 - O projeto foi desenvolvido por mim com o auxílio dos tutores e dos conteúdos do meu curso.
 ## Funcionalidades do Sistema 🛠️
