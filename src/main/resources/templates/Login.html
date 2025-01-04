@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
+        <title>Login - Sistema Clínica</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class = "login-container">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <label for="username">Usuário: </label>
+                <input type ="text" id="username" name="username" placeholder="Digite o seu usuário" required>
+                
+                <label for="password">Senha: </label>
+                <input type="password" id="password" name="password" placeholder="Digite a sua senha" required>
+                
+                <button type="submit">Logar</button>
+            </form>
+        </div>
     </body>
 </html>

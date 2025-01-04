@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
+        <title>Agendar Consulta - Sistema Clínica</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="appointment-container">
+            <h1>Agendamento de Consulta</h1>
+            <form id="appointmentForm">
+                <label for="id-patient">Id do Paciente:</label>
+                <input type="number" id="id-patient" name="id-patient" placeholder="Digite o ID do paciente" required>
+
+                <label for="id-professional">Id do Profissional:</label>
+                <input type="number" id="id-professional" name="id-professional" placeholder="Digite o ID do profissional" required>
+
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Horário:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="recipe">Receita:</label>
+                <input type="text" id="recipe" name="recipe" required>
+                
+                <label for="done">Feita:</label>
+                <select id="done" name="done">
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
     </body>
 </html>
