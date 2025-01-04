@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -10,6 +11,19 @@
     <groupId>com.mycompany.clinica</groupId>
     <artifactId>Clinica</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
     <dependencies>
         <dependency>
             <groupId>org.hibernate.orm</groupId>
@@ -67,5 +81,6 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <exec.mainClass>com.mycompany.clinica.Clinica</exec.mainClass>
+        <java.version>23</java.version>
     </properties>
 </project>
