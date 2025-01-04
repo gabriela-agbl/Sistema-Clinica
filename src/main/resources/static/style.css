@@ -1,113 +1,63 @@
-/* Estilo geral */
 body {
+    background-color: #f4f4f9;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #2c3e50;
     text-align: center;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-/* Containers principais */
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.login-container,
-.menu-container,
-.patient-container,
-.professional-container,
-.appointment-container,
-.list-container {
+/* Centralizar botões */
+.btn-primary {
+    display: block;
     width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Formulários */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input {
+    margin: 10px auto;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
-button {
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-/* Tabelas */
-table {
-    width: 100%;
-    border-collapse: collapse;
+.btn-link {
+    display: inline-block;
     margin-top: 20px;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-}
-
-/* Links */
-a {
-    color: #3498db;
     text-decoration: none;
-    transition: color 0.3s;
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
 }
 
-a:hover {
-    color: #2980b9;
+.btn-link:hover {
+    color: #0056b3;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
+/* Centralizar textos dentro do container */
+.text-center {
+    text-align: center;
+}
 
-    form {
-        width: 100%;
-    }
+/* Centralizar os itens dentro do menu, se necessário */
+.list-group-item {
+    font-size: 18px;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.list-group-item a:hover {
+    text-decoration: underline;
+    color: #0056b3;
 }
