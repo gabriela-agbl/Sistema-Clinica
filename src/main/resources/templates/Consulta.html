@@ -5,35 +5,47 @@
         <title>Agendar Consulta - Sistema Clínica</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="appointment-container">
-            <h1>Agendamento de Consulta</h1>
-            <form id="appointmentForm">
-                <label for="id-patient">Id do Paciente:</label>
-                <input type="number" id="id-patient" name="id-patient" placeholder="Digite o ID do paciente" required>
-
-                <label for="id-professional">Id do Profissional:</label>
-                <input type="number" id="id-professional" name="id-professional" placeholder="Digite o ID do profissional" required>
-
-                <label for="date">Data:</label>
-                <input type="date" id="date" name="date" required>
-                
-                <label for="time">Horário:</label>
-                <input type="time" id="time" name="time" required>
-
-                <label for="recipe">Receita:</label>
-                <input type="text" id="recipe" name="recipe" required>
-                
-                <label for="done">Feita:</label>
-                <select id="done" name="done">
+        <div class="container mt-5">
+        <h1 class="mb-4 text-center">Agendamento de Consulta</h1>
+        <form id="appointmentForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="id-patient" class="form-label">Id do Paciente:</label>
+                <input type="number" class="form-control" id="id-patient" name="id-patient" placeholder="Digite o ID do paciente" required>
+            </div>
+            <div class="mb-3">
+                <label for="id-professional" class="form-label">Id do Profissional:</label>
+                <input type="number" class="form-control" id="id-professional" name="id-professional" placeholder="Digite o ID do profissional" required>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Data:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="mb-3">
+                <label for="time" class="form-label">Horário:</label>
+                <input type="time" class="form-control" id="time" name="time" required>
+            </div>
+            <div class="mb-3">
+                <label for="recipe" class="form-label">Receita:</label>
+                <input type="text" class="form-control" id="recipe" name="recipe" required>
+            </div>
+            <div class="mb-3">
+                <label for="done" class="form-label">Feita:</label>
+                <select class="form-select" id="done" name="done">
                     <option value="Sim">Sim</option>
                     <option value="Não">Não</option>
                 </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agendar</button>
+        </form>
+        <a href="Lista.html" class="btn btn-link mt-3">Voltar</a>
+    </div>
+        
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-                <button type="submit">Agendar</button>
-            </form>
-        </div>
     </body>
 </html>

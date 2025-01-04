@@ -5,36 +5,31 @@
         <title>Lista - Sistema Clínica</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="list-container">
-            <h1>Lista de Consultas</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>idPaciente</th>
-                        <th>idProfissional</th>
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Receita</th>
-                        <th>Feita?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Paciente</td>
-                        <td>Exemplo Nome</td>
-                        <td><button>Ver Detalhes</button></td>
-                    </tr>
-                    <tr>
-                        <td>Profissional</td>
-                        <td>Exemplo Nome</td>
-                        <td><button>Ver Detalhes</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Lista de Consultas</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>idPaciente</th>
+                    <th>idProfissional</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Receita</th>
+                    <th>Feita?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As consultas serão carregadas aqui -->
+            </tbody>
+        </table>
+        <a href="Consulta.html" class="btn btn-success">Cadastrar Consulta</a>
+        <a href="Menu.html" class="btn btn-link">Voltar</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
