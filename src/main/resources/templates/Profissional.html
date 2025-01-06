@@ -12,39 +12,27 @@
     <body>
         <div class="professional-container">
             <h1 class="mb-4 text-center">Cadastro de Profissional</h1>
-            <form id="professionalForm">
-                <div class="mb-3">
-                    <label for="professionalName" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="professionalName" name="professionalName" placeholder="Digite o nome do profissional" required>
-                </div>
+                <form action="#" th:action="@{/cadastrar/profissional}" th:object="${profissional}" method="POST">
+                    <input type="text" th:field="*{nome_pr}" placeholder="Nome do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('nome_pr')}" th:errors="*{nome_pr}"></span>
 
-                <div class="mb-3">
-                    <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF do profissional (xxx.xxx.xxx-xx)" required>
-                </div>
+                    <input type="text" th:field="*{cpf_pr}" placeholder="CPF do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('cpf_pr')}" th:errors="*{cpf_pr}"></span>
 
-                <div class="mb-3">
-                    <label for="address" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Digite o endereço do profissional" required>
-                </div>
+                    <input type="text" th:field="*{ende_pr}" placeholder="Endereço do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('ende_pr')}" th:errors="*{ende_pr}"></span>
 
-                <div class="mb-3">
-                    <label for="age" class="form-label">Idade:</label>
-                    <input type="number" class="form-control" id="age" name="age" placeholder="Digite a idade do profissional" required>
-                </div>
+                    <input type="number" th:field="*{idade_pr}" placeholder="Idade do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('idade_pr')}" th:errors="*{idade_pr}"></span>
 
-                <div class="mb-3">
-                    <label for="telephone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Digite o telefone do profissional ((xx) xxxx-xxxx)" required>
-                </div>
+                    <input type="text" th:field="*{telefone_pr}" placeholder="Telefone do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('telefone_pr')}" th:errors="*{telefone_pr}"></span>
+                    
+                    <input type="text" th:field="*{especialidade_pr}" placeholder="Especialidade do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('especialidade_pr')}" th:errors="*{especialidade_pr}"></span>
 
-                <div class="mb-3">
-                    <label for="specialty" class="form-label">Especialidade:</label>
-                    <input type="text" class="form-control" id="specialty" name="specialty" placeholder="Digite a especialidade do profissional">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </form>
+                    <button type="submit" class="btn btn-info mt-4">Cadastrar</button>
+                </form>
 
             <a href="Menu.html" class="btn btn-link">Voltar</a>
         </div>

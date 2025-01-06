@@ -162,7 +162,6 @@ document.getElementById("appointmentForm").addEventListener("submit", function(e
     const idPaciente = document.getElementById("id-patient").value;
     const idProfissional = document.getElementById("id-professional").value;
     const data = document.getElementById("date").value;
-    const hora = document.getElementById("time").value;
     const receita = document.getElementById("recipe").value;
     const feita = document.getElementById("done").value;
     
@@ -186,17 +185,10 @@ document.getElementById("appointmentForm").addEventListener("submit", function(e
         alert("Data inválida! Por favor, use o formato yyyy-mm-dd.");
         valid = false;
     }
-    
-    // Validando Horário
-    if (!validarHorario(hora)) 
-    {
-        alert("Horário inválido! Por favor, use o formato hh:mm.");
-        valid = false;
-    }
 
     // Validando campos vazios
     if (!validarCampoVazio(idPaciente, "id-paciente") || !validarCampoVazio(idProfissional, "id-profissional") || 
-        !validarCampoVazio(data, "date") || !validarCampoVazio(hora, "time") || !validarCampoVazio(receita, "recipe") || 
+        !validarCampoVazio(data, "date") || !validarCampoVazio(receita, "recipe") || 
         !validarCampoVazio(feita, "done")) 
     {
         valid = false;

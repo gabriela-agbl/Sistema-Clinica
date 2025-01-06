@@ -28,21 +28,21 @@ public class ClinicaController
     @Autowired
     private ProfissionalService profissionalService;
     
-    @GetMapping("/")
+    @GetMapping("/lista")
     public String listarConsultas(Model model) 
     {
         model.addAttribute("listarConsultas", consultaService.listarConsultas());
         return "Lista";
     } 
 
-    @GetMapping("/excluir/{numero_c}")
+    @GetMapping("/excluir/consulta/{numero_c}")
     public String deletarConsulta(@PathVariable(value = "numero_c") Integer numero_c) 
     {
         consultaService.deletarConsulta(numero_c);
         return "redirect:/";
     } 
 
-    @GetMapping("/cadastrar")
+    @GetMapping("/cadastrar/consulta")
     public String exibirFormularioCadastro(Model model) 
     {
         Consulta consulta = new Consulta();
@@ -50,7 +50,7 @@ public class ClinicaController
         return "Consulta";
     } 
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar/consulta")
     public String cadastrarConsulta(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result) 
     {
         if (result.hasErrors()) 
@@ -67,7 +67,7 @@ public class ClinicaController
 
     }
     
-    @GetMapping("/cadastrar")
+    @GetMapping("/cadastrar/paciente")
     public String exibirFormularioCadastroP(Model model) 
     {
         Paciente paciente = new Paciente();
@@ -75,7 +75,7 @@ public class ClinicaController
         return "Paciente";
     } 
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar/paciente")
     public String cadastrarPaciente(@Valid @ModelAttribute("paciente") Paciente paciente, BindingResult result) 
     {
         if (result.hasErrors()) 
@@ -92,7 +92,7 @@ public class ClinicaController
 
     }
     
-    @GetMapping("/cadastrar")
+    @GetMapping("/cadastrar/profissional")
     public String exibirFormularioCadastroPR(Model model) 
     {
         Profissional profissional = new Profissional();
@@ -100,7 +100,7 @@ public class ClinicaController
         return "Profissional";
     } 
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar/profissional")
     public String cadastrarProfissional(@Valid @ModelAttribute("profissional") Profissional profissional, BindingResult result) 
     {
         if (result.hasErrors()) 

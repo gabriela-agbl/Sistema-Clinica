@@ -12,23 +12,27 @@
     <body>
     <div class="container mt-5">
         <h1 class="mb-4 text-center">Lista de Consultas</h1>
-        <table class="table table-striped">
+        <table>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>idPaciente</th>
-                    <th>idProfissional</th>
+                    <th>IdPaciente</th>
+                    <th>IdProfissional</th>
                     <th>Data</th>
-                    <th>Hora</th>
                     <th>Receita</th>
                     <th>Feita?</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- As consultas serão carregadas aqui -->
+                <tr th:each="consulta : ${listarConsultas}">
+                    <td th:text="${consulta.id_p}"></td>
+                    <td th:text="${consulta.id_pr}"></td>
+                    <td th:text="${consulta.data}"></td>
+                    <td th:text="${consulta.receita}"></td>
+                    <td th:text="${consulta.feita ? 'Sim' : 'Não'}"></td>
+                </tr>
             </tbody>
         </table>
-        <a href="Consulta.html" class="btn btn-success">Cadastrar Consulta</a>
+        <a href="Consulta.html" class=" btn btn-link">Cadastrar Consulta</a>
         <a href="Menu.html" class="btn btn-link">Voltar</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

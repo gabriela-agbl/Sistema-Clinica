@@ -10,40 +10,32 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container mt-5">
-        <h1 class="mb-4 text-center">Agendamento de Consulta</h1>
-        <form id="appointmentForm" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="id-patient" class="form-label">Id do Paciente:</label>
-                <input type="number" class="form-control" id="id-patient" name="id-patient" placeholder="Digite o ID do paciente" required>
-            </div>
-            <div class="mb-3">
-                <label for="id-professional" class="form-label">Id do Profissional:</label>
-                <input type="number" class="form-control" id="id-professional" name="id-professional" placeholder="Digite o ID do profissional" required>
-            </div>
-            <div class="mb-3">
-                <label for="date" class="form-label">Data:</label>
-                <input type="date" class="form-control" id="date" name="date" required>
-            </div>
-            <div class="mb-3">
-                <label for="time" class="form-label">Horário:</label>
-                <input type="time" class="form-control" id="time" name="time" required>
-            </div>
-            <div class="mb-3">
-                <label for="recipe" class="form-label">Receita:</label>
-                <input type="text" class="form-control" id="recipe" name="recipe" required>
-            </div>
-            <div class="mb-3">
-                <label for="done" class="form-label">Feita:</label>
-                <select class="form-select" id="done" name="done">
-                    <option value="Sim">Sim</option>
-                    <option value="Não">Não</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Agendar</button>
-        </form>
-        <a href="Lista.html" class="btn btn-link mt-3">Voltar</a>
-    </div>
+        <div class="container">
+            <h1 class="mb-4 text-center">Agendamento de Consulta</h1>
+                <form action="#" th:action="@{/cadastrar/consulta}" th:object="${consulta}" method="POST">
+                    <input type="number" th:field="*{id_p}" placeholder="Id do Paciente" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('id_p')}" th:errors="*{id_p}"></span>
+
+                    <input type="number" th:field="*{id_pr}" placeholder="Id do Profissional" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('id_pr')}" th:errors="*{id_pr}"></span>
+
+                    <input type="date" th:field="*{data}" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('data')}" th:errors="*{data}"></span>
+
+                    <input type="text" th:field="*{receita}" placeholder="Receita" class="form-control mt-4 col-4">
+                    <span class="text-danger" th:if="${#field.hasErrors('receita')}" th:errors="*{receita}"></span>
+
+                    <select  th:field="*{feita}" class="form-control mt-4 col-4">
+                        <option value="">Feita?</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                    <span class="text-danger" th:if="${#field.hasErrors('feita')}" th:errors="*{feita}"></span>
+
+                    <button type="submit" class="btn btn-info mt-4">Agendar</button>
+                </form>
+            <a href="Lista.html">Voltar</a>
+        </div>
         
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
