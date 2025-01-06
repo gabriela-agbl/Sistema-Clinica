@@ -247,7 +247,7 @@ $(document).ready(function() {
     listarConsultas(); // Chama a função ao carregar a página
     
     // Cadastrar Consulta
-    $("#btn-adicionar").click(function() {
+    $("#btn-adicionar-consulta").click(function() {
         const id_p = $("#paciente").val();
         const id_pr = $("#profissional").val();
         const data = $("#data").val();
@@ -294,7 +294,7 @@ $(document).ready(function() {
     });
     
     // Cadastrar Paciente
-    $("#btn-adicionar").click(function() {
+    $("#btn-adicionar-paciente").click(function() {
         const id_p = $("#id_p").val();
         const nome_p = $("#nome_p").val();
         const cpf_p = $("#cpf_p").val();
@@ -320,7 +320,7 @@ $(document).ready(function() {
     });
     
     // Cadastrar Profissional
-    $("#btn-adicionar").click(function() {
+    $("#btn-adicionar-profissional").click(function() {
         const id_pr = $("#id_pr").val();
         const nome_pr = $("#nome_pr").val();
         const cpf_pr = $("#cpf_pr").val();
@@ -342,35 +342,6 @@ $(document).ready(function() {
             $("#especialidade_pr").val("");// Limpa os campos
         }).fail(function() {
             alert("Erro ao cadastrar o profissional. Tente novamente.");
-        });
-    });
-    
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Previne o envio padrão do formulário
-
-        // Coleta os dados do formulário
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        // Envia os dados para o servidor usando fetch
-        fetch('/Login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: 'Joaquim@J',
-                password: '876'
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })    
-        })
-        .catch(error => {
-            // Erro na requisição
-            console.error('Erro de conexão:', error);
-            alert('Ocorreu um erro. Tente novamente mais tarde.');
         });
     });
 });
