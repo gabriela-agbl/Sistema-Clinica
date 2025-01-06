@@ -72,7 +72,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-                                <configuration> 
+                                <configuration>
                                   <excludes> 
                                     <exclude> 
                                       <groupId>org.projectlombok</groupId> 
@@ -82,7 +82,7 @@
                                 </configuration> 
 			</plugin>
 		</plugins>
-                <finalName>${artifactId}</finalName>
+                <finalName>${project.artifactId}</finalName>
 	</build>
 
 </project>

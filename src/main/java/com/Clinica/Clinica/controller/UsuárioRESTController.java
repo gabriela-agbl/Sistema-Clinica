@@ -28,7 +28,7 @@ public class UsuárioRESTController
     @PostMapping("/Login")
     public ResponseEntity<?> login(@RequestBody Usuário usuario) 
     {
-        boolean authenticated = usuarioService.authenticate(usuario.getLogin_u(), usuario.getSenha_u());
+        boolean authenticated = usuarioService.authenticate(usuario.getUsername(), usuario.getPassword());
         if (authenticated) 
         {
             return ResponseEntity.ok("Login realizado com sucesso!");
@@ -41,9 +41,9 @@ public class UsuárioRESTController
     }
 
     @GetMapping("/Login/{login_u}")
-    public ResponseEntity<?> getUserByUsername(@PathVariable String login_u) 
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) 
     {
-        Optional<User> user = usuarioRepository.findByUsername(login_u);
+        Optional<User> user = usuarioRepository.findByUsername(username);
         if (user.isPresent()) 
         {
             return ResponseEntity.ok(user.get());

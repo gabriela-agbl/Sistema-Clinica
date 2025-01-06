@@ -45,7 +45,7 @@ public class ClinicaController
     public String deletarConsulta(@PathVariable(value = "numero_c") Integer numero_c) 
     {
         consultaService.deletarConsulta(numero_c);
-        return "redirect:/";
+        return "redirect:/lista";
     } 
 
     @GetMapping("/cadastrar/consulta")
@@ -69,7 +69,7 @@ public class ClinicaController
             consultaService.adicionarConsulta(consulta);
         } 
       
-        return "redirect:/";
+        return "redirect:/lista";
 
     }
     
@@ -94,7 +94,7 @@ public class ClinicaController
             pacienteService.adicionarPaciente(paciente);
         } 
       
-        return "redirect:/";
+        return "redirect:/Menu";
 
     }
     
@@ -119,7 +119,7 @@ public class ClinicaController
             profissionalService.adicionarProfissional(profissional);
         } 
       
-        return "redirect:/";
+        return "redirect:/Menu";
 
     }
     
@@ -129,16 +129,16 @@ public class ClinicaController
     }
 
     @PostMapping("/Login")
-    public String Login(@RequestParam("login_u") String login_u,
-                        @RequestParam("senha_u") String senha_u,
+    public String Login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
                         HttpSession session, Model model) 
     {
 
         // Verifica se as credenciais são válidas
-        if (usuarioService.authenticate(login_u, senha_u)) 
+        if (usuarioService.authenticate(username, password)) 
         {
             // Armazena o nome de usuário na sessão
-            session.setAttribute("login_u", login_u);
+            session.setAttribute("username", username);
             return "redirect:/Menu";  // Redireciona para a página inicial
         } 
         
@@ -153,9 +153,9 @@ public class ClinicaController
     public String PáginaMenu(HttpSession session, Model model) 
     {
         // Verifica se o usuário está autenticado
-        if (session.getAttribute("login_u") != null) 
+        if (session.getAttribute("username") != null) 
         {
-            model.addAttribute("login_u", session.getAttribute("login_u"));
+            model.addAttribute("username", session.getAttribute("username"));
             return "Menu";  // Exibe a página inicial
         } 
         

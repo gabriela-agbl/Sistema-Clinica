@@ -16,10 +16,10 @@ public class Consulta
     private boolean feita; 
     @ManyToOne
     @JoinColumn(name = "id_p")
-    private Paciente id_p;
+    private Paciente paciente;
     @ManyToOne
     @JoinColumn(name = "id_pr")
-    private Profissional id_pr;
+    private Profissional profissional;
     
     public Integer getNumero_c() {
         return numero_c;
@@ -53,20 +53,20 @@ public class Consulta
         this.feita = feita;
     } 
     
-    public Paciente getId_p() {
-        return id_p;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setId_p(Paciente id_p) {
-        this.id_p = id_p;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     } 
     
-    public Profissional getId_pr() {
-        return id_pr;
+    public Profissional getProfissional() {
+        return profissional;
     }
 
-    public void setId_pr(Profissional id_pr) {
-        this.id_pr = id_pr;
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
     } 
         
 }

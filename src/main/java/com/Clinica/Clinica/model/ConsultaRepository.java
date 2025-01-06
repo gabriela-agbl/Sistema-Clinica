@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ConsultaRepository extends JpaRepository<Consulta, Integer>
 {
 
-    public List<Consulta> findByPaciente(Paciente id_p);
+    public List<Consulta> findByPaciente(Paciente paciente);
 
-    public List<Consulta> findByProfissional(Profissional id_pr);
+    public List<Consulta> findByProfissional(Profissional profissional);
     
 }

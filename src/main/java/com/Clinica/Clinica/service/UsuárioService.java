@@ -12,15 +12,15 @@ public class UsuárioService
     @Autowired
     private UsuárioRepository usuarioRepository;
 
-    public boolean authenticate(String login_u, String senha_u) 
+    public boolean authenticate(String username, String password) 
     {
-        Optional<User> userOpt = usuarioRepository.findByUsername(login_u);
+        Optional<User> userOpt = usuarioRepository.findByUsername(username);
         
         if (userOpt.isPresent()) 
         {
             User user = userOpt.get();
             
-            return user.getPassword().equals(senha_u); // Comparando senha simples
+            return user.getPassword().equals(password); // Comparando senha simples
         }
         
         return false;

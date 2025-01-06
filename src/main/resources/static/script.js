@@ -23,8 +23,8 @@ function validarData(data) {
 
 // Função para validar o formulário antes de enviar para a API
 async function validarFormularioConsulta(formulario) {
-    const id_p = document.querySelector("input[th\\:field='*{id_p}']").value;
-    const id_pr = document.querySelector("input[th\\:field='*{id_pr}']").value;
+    const id_p = document.querySelector("input[th\\:field='*{paciente}']").value;
+    const id_pr = document.querySelector("input[th\\:field='*{profissional}']").value;
     const data = document.querySelector("input[th\\:field='*{data}']").value;
     const receita = document.querySelector("input[th\\:field='*{receita}']").value;
     const feita = document.querySelector("select[th\\:field='*{feita}']").value;
@@ -56,8 +56,8 @@ async function validarFormularioConsulta(formulario) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id_p: id_p,
-                id_pr: id_pr,
+                paciente: id_p,
+                profissional: id_pr,
                 data,
                 receita,
                 feita
@@ -231,13 +231,15 @@ $(document).ready(function() {
         $.get("https://localhost:8080/api/consultas/", function(data) {
             $("#listarConsultas").empty(); // Limpa a lista antes de renderizar
             data.forEach(function(consulta) {
-                $("#listarConsultas").append(`<li>${consulta.id_p}</li>
-                                              <li>${consulta.id_pr}</li>
-                                              <li>${consulta.data}</li>
-                                              <li>${consulta.receita}</li>
-                                              <li>${consulta.feita}</li>`);
+                $("#listarConsultas").append(`<ul>
+                        <li><strong>Id do Paciente:</strong> ${consulta.paciente}</li>
+                        <li><strong>Id Profissional:</strong> ${consulta.profissional}</li>
+                        <li><strong>Data:</strong> ${consulta.data}</li>
+                        <li><strong>Receita:</strong> ${consulta.receita}</li>
+                        <li><strong>Feita:</strong> ${consulta.feita}</li>
+                    </ul>`);
             });
-        }).fail(function() {
+        }).fail(function(jqXHR, textStatus, errorThrown) {
             alert("Erro ao carregar a lista de consultas.");
         });
     }
@@ -246,8 +248,8 @@ $(document).ready(function() {
     
     // Cadastrar Consulta
     $("#btn-adicionar").click(function() {
-        const id_p = $("#id_p").val();
-        const id_pr = $("#id_pr").val();
+        const id_p = $("#paciente").val();
+        const id_pr = $("#profissional").val();
         const data = $("#data").val();
         const receita = $("#receita").val();
         const feita = $("#feita").val();
@@ -257,8 +259,8 @@ $(document).ready(function() {
         $.post("https://localhost:8080/api/consultas/", novaConsulta, function() {
             alert("Consulta cadastrada com sucesso!");
             listarConsultas(); // Atualiza a lista de consultas
-            $("#id_p").val("");
-            $("#id_pr").val("");
+            $("#paciente").val("");
+            $("#profissional").val("");
             $("#data").val("");
             $("#receita").val("");
             $("#feita").val("");// Limpa os campos
@@ -340,6 +342,35 @@ $(document).ready(function() {
             $("#especialidade_pr").val("");// Limpa os campos
         }).fail(function() {
             alert("Erro ao cadastrar o profissional. Tente novamente.");
+        });
+    });
+    
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o envio padrão do formulário
+
+        // Coleta os dados do formulário
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Envia os dados para o servidor usando fetch
+        fetch('/Login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: 'Joaquim@J',
+                password: '876'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })    
+        })
+        .catch(error => {
+            // Erro na requisição
+            console.error('Erro de conexão:', error);
+            alert('Ocorreu um erro. Tente novamente mais tarde.');
         });
     });
 });

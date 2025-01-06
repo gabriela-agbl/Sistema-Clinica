@@ -24,8 +24,8 @@
             </thead>
             <tbody>
                 <tr th:each="consulta : ${listarConsultas}">
-                    <td th:text="${consulta.id_p}"></td>
-                    <td th:text="${consulta.id_pr}"></td>
+                    <td th:text="${consulta.paciente}"></td>
+                    <td th:text="${consulta.profissional}"></td>
                     <td th:text="${consulta.data}"></td>
                     <td th:text="${consulta.receita}"></td>
                     <td th:text="${consulta.feita ? 'Sim' : 'Não'}"></td>
@@ -33,8 +33,8 @@
                 </tr>
             </tbody>
         </table>
-        <a href="Consulta.html" class=" btn btn-link">Cadastrar Consulta</a>
-        <a href="Menu.html" class="btn btn-link">Voltar</a>
+        <a href="/cadastrar/consulta" class=" btn btn-link">Cadastrar Consulta</a>
+        <a href="/Menu" class="btn btn-link">Voltar</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
