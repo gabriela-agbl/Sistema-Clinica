@@ -6,6 +6,8 @@ import com.Clinica.Clinica.model.Profissional;
 import com.Clinica.Clinica.service.ConsultaService;
 import com.Clinica.Clinica.service.PacienteService;
 import com.Clinica.Clinica.service.ProfissionalService;
+import com.Clinica.Clinica.service.UsuárioService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ClinicaController 
@@ -27,6 +30,9 @@ public class ClinicaController
 
     @Autowired
     private ProfissionalService profissionalService;
+    
+    @Autowired
+    private UsuárioService usuarioService;
     
     @GetMapping("/lista")
     public String listarConsultas(Model model) 
@@ -115,6 +121,56 @@ public class ClinicaController
       
         return "redirect:/";
 
+    }
+    
+    @GetMapping("/Login")
+    public String PáginaLogin() {
+        return "Login";  // Exibe a página de login
+    }
+
+    @PostMapping("/Login")
+    public String Login(@RequestParam("login_u") String login_u,
+                        @RequestParam("senha_u") String senha_u,
+                        HttpSession session, Model model) 
+    {
+
+        // Verifica se as credenciais são válidas
+        if (usuarioService.authenticate(login_u, senha_u)) 
+        {
+            // Armazena o nome de usuário na sessão
+            session.setAttribute("login_u", login_u);
+            return "redirect:/Menu";  // Redireciona para a página inicial
+        } 
+        
+        else 
+        {
+            model.addAttribute("error", "Credenciais inválidas!");
+            return "Login";  // Retorna à página de login com erro
+        }
+    }
+
+    @GetMapping("/Menu")
+    public String PáginaMenu(HttpSession session, Model model) 
+    {
+        // Verifica se o usuário está autenticado
+        if (session.getAttribute("login_u") != null) 
+        {
+            model.addAttribute("login_u", session.getAttribute("login_u"));
+            return "Menu";  // Exibe a página inicial
+        } 
+        
+        else 
+        {
+            return "redirect:/Login";  // Se não autenticado, redireciona para o login
+        }
+    }
+
+    @GetMapping("/Logout")
+    public String Logout(HttpSession session) 
+    {
+        // Remove o nome de usuário da sessão
+        session.invalidate();
+        return "redirect:/Login";  // Redireciona para o login
     }
     
 }

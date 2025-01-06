@@ -12,11 +12,14 @@
     <body>
         <div class="menu-container">
             <h1 class="mb-4 text-center">Menu</h1>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="Paciente.html">Cadastro de Pacientes</a></li>
-                <li class="list-group-item"><a href="Profissional.html">Cadastro de Profissionais</a></li>
-                <li class="list-group-item"><a href="Lista.html">Lista de Consultas</a></li>
-            </ul>
+            <form action="/Menu" method="POST">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="Paciente.html">Cadastro de Pacientes</a></li>
+                    <li class="list-group-item"><a href="Profissional.html">Cadastro de Profissionais</a></li>
+                    <li class="list-group-item"><a href="Lista.html">Lista de Consultas</a></li>
+                </ul>
+                    <a href="/Logout">Logout</a>
+            </form>
         </div>
 
         <script src="script.js"></script>
