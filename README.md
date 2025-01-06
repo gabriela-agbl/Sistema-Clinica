@@ -25,7 +25,7 @@ Este repositório tem como objetivo dar continuidade ao desenvolvimento de um si
 - Registrar Profissionais
 - Registrar Pacientes
 - Agendar Consultas e Gerenciá-las.
-- Registrar Usuários
+- Registrar Usuários(Funcionalidade Excluída)
 - Registrar Especialidade dos Profissionais
 
 
