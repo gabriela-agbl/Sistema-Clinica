@@ -29,6 +29,7 @@
                     <td th:text="${consulta.data}"></td>
                     <td th:text="${consulta.receita}"></td>
                     <td th:text="${consulta.feita ? 'Sim' : 'Não'}"></td>
+                    <a th:href="@{/excluir/consulta/{numero_c}(numero_c=${consulta.numero_c})}" class="btn btn-danger">Excluir</a>
                 </tr>
             </tbody>
         </table>

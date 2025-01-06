@@ -1,10 +1,7 @@
+// Função para validar o CPF usando regex
 function validarCPF(cpf) {
     const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-    if (/[a-zA-Z]/.test(cpf)) 
-    {
-        return false; // Verifica se o CPF contém letras
-    }
-    return regex.test(cpf);
+    return regex.test(cpf) && !/[a-zA-Z]/.test(cpf);
 }
 
 // Função para validar a idade (deve ser maior que 0)
@@ -12,193 +9,220 @@ function validarIdade(idade) {
     return idade > 0;
 }
 
- // Função para validar o telefone
-    function validarTelefone(telefone) {
-        const phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-        if (/[a-zA-Z]/.test(telefone)) {
-        alert("O telefone não pode conter letras.");
-        return false;
-    }
-    return true;
-        return phonePattern.test(telefone);
-    }
-    
-// Função para validar a data (no formato yyyy-mm-dd)
-    function validarData(data) {
-        const regex = /^\d{4}-\d{2}-\d{2}$/;
-        return regex.test(data);
-    }
-
-// Função para validar o horário (no formato hh:mm)
-    function validarHorario(horario) {
-        const regex = /^(0[1-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
-        return regex.test(horario);
-    }
-
-// Função para validar campos vazios
-    function validarCampoVazio(campo, nomeCampo) {
-        if (campo === "") {
-            alert(`O campo ${nomeCampo} não pode estar vazio.`);
-            return false;
-        }
-        return true;
-    }
-
-// Função para validar o endereço (não pode conter números)
-function validarEndereco(endereco) 
-{
-    if (/\d/.test(endereco)) {
-        alert("O endereço não pode conter números.");
-        return false;
-    }
-    return true;
+// Função para validar o telefone
+function validarTelefone(telefone) {
+    const regex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+    return regex.test(telefone) && !/[a-zA-Z]/.test(telefone);
 }
 
+// Função para validar a data (no formato yyyy-mm-dd)
+function validarData(data) {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(data);
+}
+
+// Função para validar o formulário antes de enviar para a API
+async function validarFormularioConsulta(formulario) {
+    const id_p = document.querySelector("input[th\\:field='*{id_p}']").value;
+    const id_pr = document.querySelector("input[th\\:field='*{id_pr}']").value;
+    const data = document.querySelector("input[th\\:field='*{data}']").value;
+    const receita = document.querySelector("input[th\\:field='*{receita}']").value;
+    const feita = document.querySelector("select[th\\:field='*{feita}']").value;
+
+    let erros = [];
+
+    // Validar ID do Paciente e do Profissional
+    if (!id_p || isNaN(id_p) || id_p <= 0) erros.push("ID do paciente inválido!");
+    if (!id_pr || isNaN(id_pr) || id_pr <= 0) erros.push("ID do profissional inválido!");
+
+    // Validar data
+    if (!validarData(data)) erros.push("Data inválida! Por favor, use o formato yyyy-mm-dd.");
+
+    // Validar campos vazios
+    if (!receita) erros.push("O campo Receita não pode estar vazio.");
+    if (!feita) erros.push("Selecione se a consulta foi realizada.");
+
+    // Exibir erros ou enviar dados à API
+    if (erros.length > 0) {
+        alert(erros.join("\n"));
+        return false;
+    }
+
+    // Dados válidos — enviar para a API
+    try {
+        const resposta = await fetch("https://localhost:8080/api/consultas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_p: id_p,
+                id_pr: id_pr,
+                data,
+                receita,
+                feita
+            })
+        });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            alert(`Erro ao cadastrar: ${erro.mensagem}`);
+        } else {
+            alert("Consulta agendada com sucesso!");
+            window.location.href = "Lista.html"; // Redirecionar após o sucesso
+        }
+    } catch (erro) {
+        alert(`Erro ao se comunicar com a API: ${erro.message}`);
+    }
+
+    return false; // Previne o envio padrão do formulário
+}
+
+// Associar a validação ao evento de submissão do formulário
+document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevenir o envio padrão do formulário
+    validarFormularioConsulta(this);
+});
+
 // Função para validar o formulário de paciente
-document.getElementById("patientForm").addEventListener("submit", function(event) {
-    let valid = true;
-    const cpf = document.getElementById("cpf").value;
-    const nomePaciente = document.getElementById("patientName").value;
-    const idade = document.getElementById("age").value;
-    const telefone = document.getElementById("telephone").value;
-    const endereco = document.geElementBtId("address").value;
+async function validarFormularioPaciente(formulario) {
+    const nome_p = document.querySelector("input[th\\:field='*{nome_p}']").value;
+    const cpf_p = document.querySelector("input[th\\:field='*{cpf_p}']").value;
+    const ende_p = document.querySelector("input[th\\:field='*{ende_p}']").value;
+    const idade_p = document.querySelector("input[th\\:field='*{idade_p}']").value;
+    const telefone_p = document.querySelector("input[th\\:field='*{telefone_p}']").value;
+    const convenio_p = document.querySelector("input[th\\:field='*{convenio_p}']").value;
 
-    // Validando CPF
-    if (!validarCPF(cpf)) {
-        alert("CPF inválido! Por favor, digite um CPF no formato xxx.xxx.xxx-xx.");
-        valid = false;
-    }
+    let erros = [];
 
-    // Verificando se o nome do paciente contém números
-    if (/\d/.test(nomePaciente)) {
-        alert("O nome do paciente não pode conter números.");
-        valid = false;
-    }
+    // Validar cpf
+    if (!validarCpf(cpf_p)) erros.push("CPF inválido! Por favor, use o formato xxx.xxx.xxx-xx e digite apenas números.");
     
-    // Validando Idade
-    if (!validarIdade(idade)) {
-        alert("Idade inválida! A idade deve ser maior que 0.");
-        valid = false;
-    }
+    //Validar idade
+    if (!validarIdade(idade_p)) erros.push("Idade inválida! Por favor, digite números positivos.");
     
-    // Validando Telefone
-    if (!validarTelefone(telefone)) {
-        alert("Telefone inválido! Por favor, digite um telefone no formato (xx) xxxx-xxxx.");
-        valid = false;
-    }
+    //Validar telefone
+    if (!validarTelefone(telefone_p)) erros.push("Telefone inválido! Por favor, use o formato (xx)xxxxx-xxxx e digite apenas números.");
+
+    // Validar campos vazios
+    if (!nome_p) erros.push("O campo Nome do Paciente não pode estar vazio.");
+    if (!cpf_p) erros.push("O campo CPF do Paciente não pode estar vazio");
+    if (!ende_p) erros.push("O campo Endereço do Paciente não pode estar vazio");
+    if (!idade_p) erros.push("O campo Idade do Paciente não pode estar vazio");
+    if (!telefone_p) erros.push("O campo Telefone do Paciente não pode estar vazio");
     
-    // Validando campos vazios
-    if (!validarCampoVazio(cpf, "cpf") || !validarCampoVazio(nomePaciente, "patientName") || 
-        !validarCampoVazio(idade, "age") || !validarCampoVazio(telefone, "telephone")) 
-    {
-        valid = false;
-    }
-    
-    if (!validarEndereco(endereco))
-    {
-        alert("Endereço inválido! Por favor, digite apenas letras.");
-        valid = false;
+    // Exibir erros ou enviar dados à API
+    if (erros.length > 0) {
+        alert(erros.join("\n"));
+        return false;
     }
 
-    if (!valid) {
-        event.preventDefault(); // Previne o envio do formulário se houver erro
+    // Dados válidos — enviar para a API
+    try {
+        const resposta = await fetch("https://localhost:8080/api/pacientes/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome_p,
+                cpf_p,
+                ende_p,
+                idade_p,
+                telefone_p,
+                convenio_p
+            })
+        });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            alert(`Erro ao cadastrar: ${erro.mensagem}`);
+        } else {
+            alert("Paciente cadastrado com sucesso!");
+            window.location.href = "Menu.html"; // Redirecionar após o sucesso
+        }
+    } catch (erro) {
+        alert(`Erro ao se comunicar com a API: ${erro.message}`);
     }
+
+    return false; // Previne o envio padrão do formulário
+}
+
+// Associar a validação ao evento de submissão do formulário
+document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevenir o envio padrão do formulário
+    validarFormularioPaciente(this);
 });
 
 // Função para validar o formulário de profissional
-document.getElementById("professionalForm").addEventListener("submit", function(event) {
-    let valid = true;
-    const cpf = document.getElementById("cpf").value;
-    const nomeProfissional = document.getElementById("professionalName").value;
-    const idade = document.getElementById("age").value;
-    const telefone = document.getElementById("telephone").value;
-    const endereco = document.getElementById("address").value;
+async function validarFormularioProfissional(formulario) {
+    const nome_pr = document.querySelector("input[th\\:field='*{nome_pr}']").value;
+    const cpf_pr = document.querySelector("input[th\\:field='*{cpf_pr}']").value;
+    const ende_pr = document.querySelector("input[th\\:field='*{ende_pr}']").value;
+    const idade_pr = document.querySelector("input[th\\:field='*{idade_pr}']").value;
+    const telefone_pr = document.querySelector("input[th\\:field='*{telefone_pr}']").value;
+    const especialidade_pr = document.querySelector("input[th\\:field='*{especialidade_pr}']").value;
 
-    // Validando CPF
-    if (!validarCPF(cpf)) {
-        alert("CPF inválido! Por favor, digite um CPF no formato xxx.xxx.xxx-xx.");
-        valid = false;
-    }
+    let erros = [];
 
-    // Verificando se o nome do profissional contém números
-    if (/\d/.test(nomeProfissional)) {
-        alert("O nome do profissional não pode conter números.");
-        valid = false;
-    }
+    // Validar cpf
+    if (!validarCpf(cpf_pr)) erros.push("CPF inválido! Por favor, use o formato xxx.xxx.xxx-xx e digite apenas números.");
     
-    // Validando Idade
-    if (!validarIdade(idade)) {
-        alert("Idade inválida! A idade deve ser maior que 0.");
-        valid = false;
-    }
+    //Validar idade
+    if (!validarIdade(idade_pr)) erros.push("Idade inválida! Por favor, digite números positivos.");
     
-    // Validando Telefone
-    if (!validarTelefone(telefone)) {
-        alert("Telefone inválido! Por favor, digite um telefone no formato (xx) xxxx-xxxx.");
-        valid = false;
-    }
+    //Validar telefone
+    if (!validarTelefone(telefone_pr)) erros.push("Telefone inválido! Por favor, use o formato (xx)xxxxx-xxxx e digite apenas números.");
+
+    // Validar campos vazios
+    if (!nome_pr) erros.push("O campo Nome do Profissional não pode estar vazio.");
+    if (!cpf_pr) erros.push("O campo CPF do Profissional não pode estar vazio");
+    if (!ende_pr) erros.push("O campo Endereço do Profissional não pode estar vazio");
+    if (!idade_pr) erros.push("O campo Idade do Profissional não pode estar vazio");
+    if (!telefone_pr) erros.push("O campo Telefone do Profissional não pode estar vazio");
+    if (!especialidade_pr) erros.push("O campo Especialide do Profissional não pode estar vazio");
     
-    // Validando campos vazios
-    if (!validarCampoVazio(cpf, "cpf") || !validarCampoVazio(nomeProfissional, "professionalName") || 
-        !validarCampoVazio(idade, "age") || !validarCampoVazio(telefone, "telephone")) 
-    {
-        valid = false;
-    }
-    
-    if (!validarEndereco(endereco))
-    {
-        alert("Endereço inválido! Por favor, digite apenas letras.");
-        valid = false;
+    // Exibir erros ou enviar dados à API
+    if (erros.length > 0) {
+        alert(erros.join("\n"));
+        return false;
     }
 
-    if (!valid) {
-        event.preventDefault(); // Previne o envio do formulário se houver erro
-    }
-});
+    // Dados válidos — enviar para a API
+    try {
+        const resposta = await fetch("https://localhost:8080/api/profissionais/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome_pr,
+                cpf_pr,
+                ende_pr,
+                idade_pr,
+                telefone_pr,
+                especialidade_pr
+            })
+        });
 
-// Função para validar o formulário de consulta
-document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-    let valid = true;
-    const idPaciente = document.getElementById("id-patient").value;
-    const idProfissional = document.getElementById("id-professional").value;
-    const data = document.getElementById("date").value;
-    const receita = document.getElementById("recipe").value;
-    const feita = document.getElementById("done").value;
-    
-    // Validando ID do Paciente
-    if (isNaN(idPaciente) || idPaciente <= 0) 
-    {
-        alert("ID do paciente inválido! O ID deve ser um número positivo.");
-        valid = false;
-    }
-    
-    // Validando ID do Profissional
-    if (isNaN(idProfissional) || idProfissional <= 0) 
-    {
-        alert("ID do profissional inválido! O ID deve ser um número positivo.");
-        valid = false;
-    }
-    
-    // Validando Data de Nascimento
-    if (!validarData(data)) 
-    {
-        alert("Data inválida! Por favor, use o formato yyyy-mm-dd.");
-        valid = false;
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            alert(`Erro ao cadastrar: ${erro.mensagem}`);
+        } else {
+            alert("Profissional cadastrado com sucesso!");
+            window.location.href = "Menu.html"; // Redirecionar após o sucesso
+        }
+    } catch (erro) {
+        alert(`Erro ao se comunicar com a API: ${erro.message}`);
     }
 
-    // Validando campos vazios
-    if (!validarCampoVazio(idPaciente, "id-paciente") || !validarCampoVazio(idProfissional, "id-profissional") || 
-        !validarCampoVazio(data, "date") || !validarCampoVazio(receita, "recipe") || 
-        !validarCampoVazio(feita, "done")) 
-    {
-        valid = false;
-    }
-        
-    if (!valid) 
-    {
-        event.preventDefault();
-    }
+    return false; // Previne o envio padrão do formulário
+}
 
+// Associar a validação ao evento de submissão do formulário
+document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevenir o envio padrão do formulário
+    validarFormularioProfissional(this);
 });
 
 $(document).ready(function() {
