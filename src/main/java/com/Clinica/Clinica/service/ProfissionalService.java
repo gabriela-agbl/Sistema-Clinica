@@ -2,6 +2,7 @@ package com.Clinica.Clinica.service;
 
 import com.Clinica.Clinica.model.Profissional;
 import com.Clinica.Clinica.model.ProfissionalRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,11 @@ public class ProfissionalService
 {
     @Autowired
     private ProfissionalRepository profissionalRepository;
+    
+    public List<Profissional> listarProfissionais() 
+    {
+        return profissionalRepository.findAll();
+    }
 
     public Profissional adicionarProfissional(Profissional profissional) 
     {

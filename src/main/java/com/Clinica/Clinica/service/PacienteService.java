@@ -2,6 +2,7 @@ package com.Clinica.Clinica.service;
 
 import com.Clinica.Clinica.model.Paciente;
 import com.Clinica.Clinica.model.PacienteRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,11 @@ public class PacienteService
 {
     @Autowired
     private PacienteRepository pacienteRepository;
+    
+    public List<Paciente> listarPacientes() 
+    {
+        return pacienteRepository.findAll();
+    }
 
     public Paciente adicionarPaciente(Paciente paciente) 
     {

@@ -77,10 +77,11 @@ public class ClinicaController
     } 
 
     @PostMapping("/cadastrar/paciente")
-    public String cadastrarPaciente(@Valid @ModelAttribute("paciente") Paciente paciente, BindingResult result) 
+    public String cadastrarPaciente(@Valid Paciente paciente, BindingResult result, Model model) 
     {
         if (result.hasErrors()) 
         {
+            model.addAttribute("paciente", paciente);
             return "Paciente";
         } 
     
@@ -102,10 +103,11 @@ public class ClinicaController
     } 
 
     @PostMapping("/cadastrar/profissional")
-    public String cadastrarProfissional(@Valid @ModelAttribute("profissional") Profissional profissional, BindingResult result) 
+    public String cadastrarProfissional(@Valid Profissional profissional, BindingResult result, Model model) 
     {
         if (result.hasErrors()) 
         {
+            model.addAttribute("profissional", profissional);
             return "Profissional";
         } 
     
@@ -121,16 +123,6 @@ public class ClinicaController
     @GetMapping("/Menu")
     public String PáginaMenu(HttpSession session, Model model) 
     {
-        // Verifica se o usuário está autenticado
-        if (session.getAttribute("username") != null) 
-        {
-            model.addAttribute("username", session.getAttribute("username"));
-            return "Menu";  // Exibe a página inicial
-        } 
-        
-        else 
-        {
-            return "redirect:/Login";  // Se não autenticado, redireciona para o login
-        }
+        return "Menu";  
     }
 }

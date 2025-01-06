@@ -12,13 +12,12 @@
     <body>
         <div class="menu-container">
             <h1 class="mb-4 text-center">Menu</h1>
-            <form action="/Menu" method="POST">
+            <form action="#" th:action="@{/Menu}" method="POST">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="/cadastrar/paciente">Cadastro de Pacientes</a></li>
                     <li class="list-group-item"><a href="/cadastrar/profissional">Cadastro de Profissionais</a></li>
                     <li class="list-group-item"><a href="/lista">Lista de Consultas</a></li>
                 </ul>
-                    <a href="/Logout">Logout</a>
             </form>
         </div>
 
