@@ -13,23 +13,35 @@
         <div class="patient-container">
             <h1 class="mb-4 text-center">Cadastro de Paciente</h1>
                 <form action="#" th:action="@{/cadastrar/paciente}" th:object="${paciente}" method="POST">
-                    <input type="text" th:field="*{nome_p}" placeholder="Nome do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('nome_p')}" th:errors="*{nome_p}"></span>
+                    <div class="form-group">
+                        <input type="text" th:field="*{nome_p}" placeholder="Nome do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('nome_p')}" th:errors="*{nome_p}"></div>
+                    </div>
 
-                    <input type="text" th:field="*{cpf_p}" placeholder="CPF do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('cpf_p')}" th:errors="*{cpf_p}"></span>
+                    <div class="form-group">
+                        <input type="text" th:field="*{cpf_p}" placeholder="CPF do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('cpf_p')}" th:errors="*{cpf_p}"></div>
+                    </div>
 
-                    <input type="text" th:field="*{ende_p}" placeholder="Endereço do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('ende_p')}" th:errors="*{ende_p}"></span>
+                    <div class="form-group">
+                        <input type="text" th:field="*{ende_p}" placeholder="Endereço do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('ende_p')}" th:errors="*{ende_p}"></div>
+                    </div>
 
-                    <input type="number" th:field="*{idade_p}" placeholder="Idade do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('idade_p')}" th:errors="*{idade_p}"></span>
+                    <div class="form-group">
+                        <input type="number" th:field="*{idade_p}" placeholder="Idade do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('idade_p')}" th:errors="*{idade_p}"></div>
+                    </div>
 
-                    <input type="text" th:field="*{telefone_p}" placeholder="Telefone do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('telefone_p')}" th:errors="*{telefone_p}"></span>
-                    
-                    <input type="text" th:field="*{convenio_p}" placeholder="Convênio do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('convenio_p')}" th:errors="*{convenio_p}"></span>
+                    <div class="form-group">
+                        <input type="text" th:field="*{telefone_p}" placeholder="Telefone do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('telefone_p')}" th:errors="*{telefone_p}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" th:field="*{convenio_p}" placeholder="Convênio do Paciente" class="form-control mt-4 col-4">
+                        <div class="text-danger" th:if="${#fields.hasErrors('convenio_p')}" th:errors="*{convenio_p}"></div>
+                    </div>
 
                     <button type="submit" class="btn btn-info mt-4">Cadastrar</button>
                 </form>

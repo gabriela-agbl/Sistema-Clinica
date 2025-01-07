@@ -14,13 +14,13 @@
         <h1 class="mb-4 text-center">Lista de Consultas</h1>
         <ul>
             <li th:each="consulta : ${listarConsultas}">
-                <span th:if="${analise != null}" th:text="${analise.paciente}"></span>
-                <span th:if="${analise != null}" th:text="${analise.profissional}"></span>
-                <span th:if="${analise != null}" th:text="${analise.data}"></span>
-                <span th:if="${analise != null}" th:text="${analise.receita}"></span>
-                <span th:if="${analise != null}" th:text="${analise.feita}"></span>
-                <a th:href="@{/excluir/consulta/{numero_c}(numero_c=${consulta.numero_c})}" class="btn btn-danger">Excluir</a> 
-            </li>
+                <span th:text="${consulta.paciente}">Paciente</span>
+                <span th:text="${consulta.profissional}">Profissional</span>
+                <span th:text="${#dates.format(consulta.data_c, 'dd/MM/yyyy')}">Data</span>
+                <span th:text="${consulta.receita_c}">Receita</span>
+                <span th:text="${consulta.feita}">Feita</span>
+                <a th:href="@{/excluir/consulta/{numero_c}(numero_c=${consulta.numero_c})}" class="btn btn-danger">Excluir</a>
+    </li>
         </ul>
         <a href="/cadastrar/consulta" class=" btn btn-link">Cadastrar Consulta</a>
         <a href="/Menu" class="btn btn-link">Voltar</a>

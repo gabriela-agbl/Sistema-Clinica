@@ -9,8 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProfissionalService 
 {
+    private final ProfissionalRepository profissionalRepository;
+    
     @Autowired
-    private ProfissionalRepository profissionalRepository;
+    public ProfissionalService(ProfissionalRepository profissionalRepository) 
+    {
+        this.profissionalRepository = profissionalRepository;
+    }
     
     public List<Profissional> listarProfissionais() 
     {

@@ -1,6 +1,10 @@
 package com.Clinica.Clinica.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -10,12 +14,26 @@ public class Profissional
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_pr; 
+    private Integer id_pr;
+    
+    @NotNull(message = "O profissional é obrigatório.")
     private String nome_pr;
+    
+    @NotEmpty(message = "O CPF é obrigatório.")
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve conter 11 dígitos.")
     private String cpf_pr;
+    
+    @NotEmpty(message = "O endereço é obrigatório.")
     private String ende_pr;
+    
+    @NotNull(message = "A idade é obrigatória.")
+    @Min(value = 0, message = "A idade não pode ser negativa.")
     private int idade_pr;
+    
+    @NotEmpty(message = "O telefone é obrigatório.")
     private String telefone_pr;
+    
+    @NotNull(message = "A especialidade é obrigatória.")
     private String especialidade_pr;
     
     public Integer getId_pr() {

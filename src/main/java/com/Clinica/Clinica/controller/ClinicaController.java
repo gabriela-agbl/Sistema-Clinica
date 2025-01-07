@@ -8,6 +8,7 @@ import com.Clinica.Clinica.service.PacienteService;
 import com.Clinica.Clinica.service.ProfissionalService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,8 @@ public class ClinicaController
     @GetMapping("/lista")
     public String listarConsultas(Model model) 
     {
-        model.addAttribute("listarConsultas", consultaService.listarConsultas());
+        List<Consulta> consultas = consultaService.listarConsultas();
+        model.addAttribute("listarConsultas", consultas);
         return "Lista";
     } 
 
@@ -46,16 +48,16 @@ public class ClinicaController
     @GetMapping("/cadastrar/consulta")
     public String exibirFormularioCadastro(Model model) 
     {
-        Consulta consulta = new Consulta();
-        model.addAttribute("consulta", consulta);
+        model.addAttribute("consulta", new Consulta());
         return "Consulta";
     } 
 
     @PostMapping("/cadastrar/consulta")
-    public String cadastrarConsulta(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result) 
+    public String cadastrarConsulta(@Valid @ModelAttribute("consulta") Consulta consulta, BindingResult result, Model model) 
     {
         if (result.hasErrors()) 
         {
+            model.addAttribute("consulta, consulta");
             return "Consulta";
         } 
     
@@ -71,13 +73,12 @@ public class ClinicaController
     @GetMapping("/cadastrar/paciente")
     public String exibirFormularioCadastroP(Model model) 
     {
-        Paciente paciente = new Paciente();
-        model.addAttribute("paciente", paciente);
+        model.addAttribute("paciente", new Paciente());
         return "Paciente";
     } 
 
     @PostMapping("/cadastrar/paciente")
-    public String cadastrarPaciente(@Valid Paciente paciente, BindingResult result, Model model) 
+    public String cadastrarPaciente(@Valid @ModelAttribute("paciente") Paciente paciente, BindingResult result, Model model) 
     {
         if (result.hasErrors()) 
         {
@@ -97,13 +98,12 @@ public class ClinicaController
     @GetMapping("/cadastrar/profissional")
     public String exibirFormularioCadastroPR(Model model) 
     {
-        Profissional profissional = new Profissional();
-        model.addAttribute("profissional", profissional);
+        model.addAttribute("profissional", new Profissional());
         return "Profissional";
     } 
 
     @PostMapping("/cadastrar/profissional")
-    public String cadastrarProfissional(@Valid Profissional profissional, BindingResult result, Model model) 
+    public String cadastrarProfissional(@Valid @ModelAttribute("paciente") Profissional profissional, BindingResult result, Model model) 
     {
         if (result.hasErrors()) 
         {

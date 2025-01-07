@@ -12,28 +12,38 @@
     <body>
         <div class="container">
             <h1 class="mb-4 text-center">Agendamento de Consulta</h1>
-                <form action="#" th:action="@{/cadastrar/consulta}" th:object="${consulta}" method="POST">
-                    <input type="number" th:field="*{paciente}" placeholder="Id do Paciente" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('paciente')}" th:errors="*{paciente}"></span>
-
-                    <input type="number" th:field="*{profissional}" placeholder="Id do Profissional" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('profissional')}" th:errors="*{profissional}"></span>
-
-                    <input type="date" th:field="*{data}" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('data')}" th:errors="*{data}"></span>
-
-                    <input type="text" th:field="*{receita}" placeholder="Receita" class="form-control mt-4 col-4">
-                    <span class="text-danger" th:if="${#field.hasErrors('receita')}" th:errors="*{receita}"></span>
-
-                    <select  th:field="*{feita}" class="form-control mt-4 col-4">
-                        <option value="">Feita?</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
-                    <span class="text-danger" th:if="${#field.hasErrors('feita')}" th:errors="*{feita}"></span>
-
-                    <button type="submit" class="btn btn-info mt-4">Agendar</button>
-                </form>
+                <form th:action="@{/cadastrar/consulta}" th:object="${consulta}" method="POST">
+                    <div class="form-group">
+                        <label for="paciente">Paciente:</label>
+                        <input type="number" th:field="*{paciente.id_p}" placeholder="ID do Paciente" class="form-control mt-2">
+                        <div class="text-danger" th:if="${#fields.hasErrors('paciente.id_p')}" th:errors="*{paciente.id_p}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profissional">Profissional:</label>
+                        <input type="number" th:field="*{profissional.id_pr}" placeholder="ID do Profissional" class="form-control mt-2">
+                        <div class="text-danger" th:if="${#fields.hasErrors('profissional.id_pr')}" th:errors="*{profissional.id_pr}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="data">Data da Consulta:</label>
+                        <input type="date" th:field="*{data_c}" class="form-control mt-2">
+                        <div class="text-danger" th:if="${#fields.hasErrors('data_c')}" th:errors="*{data_c}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="receita">Receita:</label>
+                        <textarea th:field="*{receita_c}" placeholder="Receita" class="form-control mt-2"></textarea>
+                    </div>
+                    <div class="form-group">
+                       <label for="feita">Consulta Realizada?</label>
+                        <select th:field="*{feita}" class="form-control mt-2">
+                            <option value="">Selecione</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
+                        </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('feita')}" th:errors="*{feita}"></div>
+                    </div>
+            <button type="submit" class="btn btn-info mt-4">Agendar</button>
+        </form>
+            <a href="/Menu" class="btn btn-link mt-2">Voltar</a>
         </div>
         
         <script src="script.js"></script>

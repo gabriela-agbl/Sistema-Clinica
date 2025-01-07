@@ -9,8 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PacienteService 
 {
+    private final PacienteRepository pacienteRepository;
+    
     @Autowired
-    private PacienteRepository pacienteRepository;
+    public PacienteService(PacienteRepository pacienteRepository) 
+    {
+        this.pacienteRepository = pacienteRepository;
+    }
     
     public List<Paciente> listarPacientes() 
     {

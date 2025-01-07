@@ -1,6 +1,10 @@
 package com.Clinica.Clinica.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -11,11 +15,24 @@ public class Paciente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_p; 
+    
+    @NotEmpty(message = "O nome é obrigatório.")
     private String nome_p;
+    
+    @NotEmpty(message = "O CPF é obrigatório.")
+    @Pattern(regexp = "\\d{11}", message = "O CPF deve conter 11 dígitos.")
     private String cpf_p;
+    
+    @NotEmpty(message = "O endereço é obrigatório.")
     private String ende_p;
+    
+    @NotNull(message = "A idade é obrigatória.")
+    @Min(value = 0, message = "A idade não pode ser negativa.")
     private int idade_p;
+    
+    @NotEmpty(message = "O telefone é obrigatório.")
     private String telefone_p;
+    
     private String convenio_p;
     
     public Integer getId_p() {

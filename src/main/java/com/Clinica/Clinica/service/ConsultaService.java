@@ -11,9 +11,14 @@ import org.springframework.stereotype.Service;
 @Service 
 public class ConsultaService 
 {
+    private final ConsultaRepository consultaRepository;
+    
     @Autowired
-    private ConsultaRepository consultaRepository;
-
+    public ConsultaService(ConsultaRepository consultaRepository) 
+    {
+        this.consultaRepository = consultaRepository;
+    }
+    
     public Consulta adicionarConsulta(Consulta consulta) 
     {
         consulta.setNumero_c(null);

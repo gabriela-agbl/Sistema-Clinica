@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // Listar Consultas
     function listarConsultas() {
-        $.get("https://localhost:8080/api/consultas/", function(data) {
+        $.get("http://localhost:8080/api/consultas/", function(data) {
             $("#listarConsultas").empty(); // Limpa a lista antes de renderizar
             data.forEach(function(consulta) {
                 $("#listarConsultas").append(`
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
         const novaConsulta = { id_p, id_pr, data, receita, feita };
 
-        $.post("https://localhost:8080/api/consultas/", novaConsulta, function() {
+        $.post("http://localhost:8080/api/consultas/", novaConsulta, function() {
             alert("Consulta cadastrada com sucesso!");
             listarConsultas(); // Atualiza a lista de consultas
             $("#paciente").val("");
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
         if (confirm("Tem certeza de que deseja excluir esta consulta?")) {
             $.ajax({
-                url: `https://localhost:8080/api/consultas/excluir/${numero_c}`,
+                url: `http://localhost:8080/api/consultas/excluir/${numero_c}`,
                 method: "DELETE",
                 success: function() {
                     alert("Consulta excluída com sucesso!");
@@ -76,7 +76,7 @@ $(document).ready(function() {
 
         const novoPaciente = { nome_p, cpf_p, ende_p, idade_p, telefone_p, convenio_p };
 
-        $.post("https://localhost:8080/api/pacientes/", novoPaciente, function() {
+        $.post("http://localhost:8080/api/pacientes/", novoPaciente, function() {
             alert("Paciente cadastrado com sucesso!");
             $("#nome_p").val("");
             $("#cpf_p").val("");
@@ -100,7 +100,7 @@ $(document).ready(function() {
 
         const novoProfissional = { nome_pr, cpf_pr, ende_pr, idade_pr, telefone_pr, especialidade_pr };
 
-        $.post("https://localhost:8080/api/profissionais/", novoProfissional, function() {
+        $.post("http://localhost:8080/api/profissionais/", novoProfissional, function() {
             alert("Profissional cadastrado com sucesso!");
             $("#nome_pr").val("");
             $("#cpf_pr").val("");

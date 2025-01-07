@@ -1,6 +1,8 @@
 package com.Clinica.Clinica.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -11,12 +13,17 @@ public class Consulta
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer numero_c; 
+    @NotNull(message = "A data da consulta é obrigatória.")
+    @Future(message = "A data da consulta deve ser no futuro.")
     private String data_c;
     private String receita_c;
-    private boolean feita; 
+    @NotNull(message = "O status da consulta é obrigatório.")
+    private Boolean feita;
+    @NotNull(message = "O paciente é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_p")
     private Paciente paciente;
+    @NotNull(message = "O profissional é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_pr")
     private Profissional profissional;
@@ -45,11 +52,11 @@ public class Consulta
         this.receita_c = receita_c;
     }
 
-    public boolean getFeita() {
+    public Boolean getFeita() {
         return feita;
     }
 
-    public void setFeita(boolean feita) {
+    public void setFeita(Boolean feita) {
         this.feita = feita;
     } 
     
