@@ -12,16 +12,29 @@
     <body>
     <div class="container mt-5">
         <h1 class="mb-4 text-center">Lista de Consultas</h1>
-        <ul>
-            <li th:each="consulta : ${listarConsultas}">
-                <span th:text="${consulta.paciente}">Paciente</span>
-                <span th:text="${consulta.profissional}">Profissional</span>
-                <span th:text="${#dates.format(consulta.data_c, 'dd/MM/yyyy')}">Data</span>
-                <span th:text="${consulta.receita_c}">Receita</span>
-                <span th:text="${consulta.feita}">Feita</span>
-                <a th:href="@{/excluir/consulta/{numero_c}(numero_c=${consulta.numero_c})}" class="btn btn-danger">Excluir</a>
-    </li>
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id_paciente</th>
+                    <th>Id_profissional</th>
+                    <th>Data</th>
+                    <th>Receita</th>
+                    <th>Feita?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consulta : ${listarConsultas}">
+                    <td th:text="${consulta.paciente.id_p}">Id_paciente</td>
+                    <td th:text="${consulta.profissional.id_pr}">Id_profissional</td>
+                    <td th:text="${#temporals.format(consulta.data_c, 'dd/MM/yyyy')}">Data</td>
+                    <td th:text="${consulta.receita_c}">Receita</td>
+                    <td th:text="${consulta.feita}">Feita?</td>
+                   <td>
+                    <a th:href="@{/excluir/consulta/{numero_c}(numero_c=${consulta.numero_c})}" class="btn btn-danger">Excluir</a>
+                   </td>
+                </tr>
+            </tbody>
+        </table>
         <a href="/cadastrar/consulta" class=" btn btn-link">Cadastrar Consulta</a>
         <a href="/Menu" class="btn btn-link">Voltar</a>
     </div>

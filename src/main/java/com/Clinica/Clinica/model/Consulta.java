@@ -3,6 +3,7 @@ package com.Clinica.Clinica.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data
@@ -15,7 +16,7 @@ public class Consulta
     private Integer numero_c; 
     @NotNull(message = "A data da consulta é obrigatória.")
     @Future(message = "A data da consulta deve ser no futuro.")
-    private String data_c;
+    private LocalDate data_c;
     private String receita_c;
     @NotNull(message = "O status da consulta é obrigatório.")
     private Boolean feita;
@@ -36,11 +37,11 @@ public class Consulta
         this.numero_c = numero_c;
     }
 
-    public String getData_c() {
+    public LocalDate getData_c() {
         return data_c;
     }
 
-    public void setData_c(String data_c) {
+    public void setData_c(LocalDate data_c) {
         this.data_c = data_c;
     }
 
