@@ -1,4 +1,4 @@
-# Sistema-Clínica
+# 🏥 Sistema-Clínica
 🎯
 Este repositório tem como objetivo dar continuidade ao desenvolvimento de um sistema de clínicas médicas, inicialmente criado no início do ano. O sistema é projetado para atender às necessidades de agendamento, cadastro de pacientes, gerenciamento de prontuários e outros serviços essenciais para clínicas de saúde públicas.
 
