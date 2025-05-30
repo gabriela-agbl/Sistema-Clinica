@@ -24,15 +24,13 @@
 </div>
 
 <div align="center">
-   <h2>Equipe de Desenvolvedores 👨‍💻</h2> 
-
-   <div align="left">
+   <h2>Equipe de Desenvolvedores 👨‍💻</h2>
    
-   - [Gabriela Rodrigues](https://www.github.com/Agbl09)
-
-   - O projeto foi desenvolvido por mim com o auxílio dos tutores e dos conteúdos do meu curso.
-   </div>
-
+   O projeto foi desenvolvido por mim com o auxílio dos tutores e dos conteúdos do meu curso.
+   
+   <a href="https://github.com/Agbl09/Sistema-Clinica/graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=Agbl09/Sistema-Clinica"/>
+      
 </div>
 
 <div align="center">
