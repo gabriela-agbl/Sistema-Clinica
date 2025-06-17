@@ -5,9 +5,8 @@
 </div>
 
 <div align="center">
-   <h2>Status 🟡</h2>
-   
-   ... Em Desenvolvimento
+   <h2>Status 🟢</h2>
+   Entregue
 </div>
 
 <div align="center">
