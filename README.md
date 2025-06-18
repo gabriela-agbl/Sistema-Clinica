@@ -7,6 +7,7 @@
 <div align="center">
    <h2>Status 🟢</h2>
    Entregue
+   Mudanças futuras serão adicionadas
 </div>
 
 <div align="center">
