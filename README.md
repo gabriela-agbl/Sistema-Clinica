@@ -24,8 +24,8 @@
    
    O projeto foi desenvolvido por mim com o auxílio dos tutores e dos conteúdos do meu curso.
    
-   <a href="https://github.com/Agbl09/Sistema-Clinica/graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=Agbl09/Sistema-Clinica"/>
+   <a href="https://github.com/gabriela-agbl/Sistema-Clinica/graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=gabriela-agbl/Sistema-Clinica"/>
       
 </div>
 
@@ -46,6 +46,6 @@
    <h2>📝 Licença</h2>
    Este projeto foi desenvolvido para fins educacionais e está disponível para uso e modificação conforme necessário.
 
-   Feito por [Gabriela Rodrigues](https://github.com/Agbl09)
+   Feito por [Gabriela Rodrigues](https://github.com/gabriela-agbl)
 </div>
 
